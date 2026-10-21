@@ -1,0 +1,22 @@
+# Uploaded files: student passport photos, uploaded logos and stamps.
+# The folders are kept so a fresh clone still has somewhere to put uploads.
+/uploads/students/*
+!/uploads/students/.gitkeep
+/uploads/logo.*
+/uploads/stamp.*
+
+# Test artefacts: live session cookies and captured HTML output.
+/tests/*cookies.txt
+/tests/*_output.html
+/tests/probe*.html
+/tests/*.html
+!/tests/.htaccess
+
+# Local environment, logs and editor noise.
+.env
+.env.*
+*.log
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

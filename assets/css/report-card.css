@@ -1,0 +1,1027 @@
+/* ==========================================================================
+   Terminal Academic Progress Report - Print Stylesheet
+   GREEN + BLUE + WHITE academic style. A4 portrait, single sheet.
+   Loaded by: admin/print-report-card.php, public-result-print.php,
+              result-view.php
+   ========================================================================== */
+
+@page {
+    size: A4 portrait;
+    margin: 8mm 9mm;
+}
+
+:root {
+    --rc-green-900: #0b3d2c;
+    --rc-green-700: #0f5132;
+    --rc-green-500: #157347;
+    --rc-green-100: #e6f2ea;
+    --rc-green-050: #f3f9f5;
+
+    --rc-blue-900: #12414f;
+    --rc-blue-700: #1a5f7a;
+    --rc-blue-500: #2d8ca8;
+    --rc-blue-100: #e2eff4;
+    --rc-blue-050: #f2f8fa;
+
+    --rc-ink: #16241f;
+    --rc-muted: #5c6f68;
+    --rc-line: #b9ccc4;
+    --rc-line-soft: #dde8e3;
+
+    --rc-gold: #b8860b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.print-body {
+    margin: 0;
+    padding: 0;
+    background: #eef2f0;
+    color: var(--rc-ink);
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 8.6pt;
+    line-height: 1.35;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+/* The "hide me when printing" flag is scoped to @media print further down.
+   It is deliberately NOT hidden on screen: result-view.php wraps its countdown,
+   Print and Close controls in .no-print, and those must stay visible until the
+   visitor actually prints. */
+
+.rc-sheet {
+    width: 100%;
+    max-width: 192mm;
+    margin: 0 auto;
+    background: #fff;
+    padding: 6mm 7mm 5mm;
+    position: relative;
+}
+
+/* ==========================================================================
+   1. MASTHEAD
+   ========================================================================== */
+
+.rc-masthead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    background: linear-gradient(105deg, var(--rc-green-700) 0%, var(--rc-green-500) 52%, var(--rc-blue-700) 100%);
+    border-radius: 3px;
+    padding: 4mm 4mm;
+    color: #fff;
+}
+
+.rc-masthead__brand {
+    display: table-cell;
+    width: 22mm;
+    vertical-align: middle;
+}
+
+.rc-masthead__logo {
+    width: 19mm;
+    height: 19mm;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 50%;
+    padding: 1mm;
+    display: block;
+}
+
+.rc-masthead__id {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 4mm;
+}
+
+.rc-masthead__name {
+    font-size: 13.4pt;
+    font-weight: 700;
+    line-height: 1.16;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.rc-masthead__campaign {
+    font-size: 8.6pt;
+    font-weight: 600;
+    color: #ffe9a8;
+    margin: 1mm 0 0;
+    letter-spacing: 0.4px;
+}
+
+.rc-masthead__motto {
+    font-size: 7.8pt;
+    font-style: italic;
+    color: #d8ecdf;
+    margin: 0.6mm 0 0;
+}
+
+.rc-masthead__contact {
+    font-size: 7.2pt;
+    color: #eaf5ee;
+    margin: 1mm 0 0;
+    line-height: 1.4;
+}
+
+.rc-masthead__contact b {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   2. REPORT TITLE
+   ========================================================================== */
+
+.rc-titlebar {
+    margin: 3mm 0 0;
+    border: 1px solid var(--rc-blue-700);
+    border-left: 3.5mm solid var(--rc-green-500);
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--rc-blue-050) 0%, #fff 70%);
+    padding: 1.8mm 3mm;
+    text-align: center;
+}
+
+.rc-titlebar__main {
+    font-size: 11.4pt;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rc-green-900);
+    margin: 0;
+}
+
+.rc-titlebar__sub {
+    font-size: 7.8pt;
+    color: var(--rc-blue-700);
+    margin: 0.7mm 0 0;
+    letter-spacing: 0.3px;
+}
+
+.rc-titlebar__sub strong {
+    color: var(--rc-green-700);
+}
+
+/* ==========================================================================
+   3. STUDENT INFORMATION PANEL
+   ========================================================================== */
+
+.rc-identity {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 3mm;
+    border: 1px solid var(--rc-line);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.rc-identity__photo-cell {
+    display: table-cell;
+    width: 27mm;
+    vertical-align: middle;
+    background: var(--rc-blue-050);
+    border-right: 1px solid var(--rc-line);
+    padding: 2.4mm;
+    text-align: center;
+}
+
+.rc-photo {
+    width: 21mm;
+    height: 26mm;
+    object-fit: cover;
+    border: 1px solid var(--rc-line);
+    background: #fff;
+    display: block;
+    margin: 0 auto;
+}
+
+.rc-photo--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6.4pt;
+    color: var(--rc-muted);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.rc-identity__body {
+    display: table-cell;
+    vertical-align: top;
+    padding: 2.4mm 3mm;
+}
+
+.rc-identity__name {
+    font-size: 10.6pt;
+    font-weight: 700;
+    color: var(--rc-green-900);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin: 0 0 1.6mm;
+    border-bottom: 0.5pt solid var(--rc-line-soft);
+    padding-bottom: 1.2mm;
+}
+
+.rc-identity__grid {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.rc-identity__row {
+    display: table-row;
+}
+
+.rc-field {
+    display: table-cell;
+    width: 25%;
+    padding: 0.7mm 2mm 0.7mm 0;
+    vertical-align: top;
+}
+
+.rc-field__label {
+    display: block;
+    font-size: 6.4pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--rc-blue-700);
+}
+
+.rc-field__value {
+    display: block;
+    font-size: 8.4pt;
+    font-weight: 600;
+    color: var(--rc-ink);
+    border-bottom: 0.5pt dotted var(--rc-line);
+    min-height: 4.4mm;
+    line-height: 1.25;
+}
+
+.rc-field__value--muted {
+    color: var(--rc-muted);
+    font-weight: 500;
+}
+
+.rc-field__value.mono {
+    font-family: "Consolas", "Courier New", monospace;
+    letter-spacing: 0.3px;
+}
+
+/* ==========================================================================
+   4. BODY GRID - main column + side column
+   ========================================================================== */
+
+.rc-body {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 3mm;
+}
+
+.rc-main {
+    display: table-cell;
+    width: 67%;
+    vertical-align: top;
+    padding-right: 3mm;
+}
+
+.rc-side {
+    display: table-cell;
+    width: 33%;
+    vertical-align: top;
+    padding-left: 3mm;
+    border-left: 0.5pt solid var(--rc-line-soft);
+}
+
+/* ==========================================================================
+   5. SECTION HEADINGS
+   ========================================================================== */
+
+.rc-h2 {
+    font-size: 8.4pt;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(90deg, var(--rc-green-700) 0%, var(--rc-blue-700) 100%);
+    border-radius: 2px;
+    padding: 1.1mm 2.4mm;
+    margin: 0 0 1.6mm;
+}
+
+.rc-h2--blue {
+    background: linear-gradient(90deg, var(--rc-blue-700) 0%, var(--rc-blue-500) 100%);
+}
+
+.rc-h2--tight {
+    margin-top: 0;
+}
+
+/* ==========================================================================
+   6. ACADEMIC TABLE
+   ========================================================================== */
+
+.rc-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 7.4pt;
+}
+
+.rc-table th,
+.rc-table td {
+    border: 0.5pt solid var(--rc-line);
+    padding: 0.9mm 0.6mm;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.rc-table thead th {
+    background: var(--rc-green-500);
+    color: #fff;
+    font-size: 6.6pt;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+.rc-table thead tr.rc-subhead th {
+    background: var(--rc-blue-500);
+    font-size: 6.2pt;
+}
+
+.rc-table thead th.rc-col-subject {
+    background: var(--rc-green-700);
+    text-align: left;
+    padding-left: 1.6mm;
+}
+
+.rc-table__sub {
+    display: block;
+    font-weight: 500;
+    font-size: 5.8pt;
+    opacity: 0.85;
+    text-transform: none;
+}
+
+.rc-table__max {
+    display: block;
+    font-weight: 500;
+    font-size: 5.8pt;
+    opacity: 0.8;
+    text-transform: none;
+}
+
+.rc-table tbody tr:nth-child(even) td {
+    background: var(--rc-green-050);
+}
+
+.rc-table td.rc-subject {
+    text-align: left;
+    padding-left: 1.6mm;
+    font-weight: 600;
+    font-size: 7.4pt;
+    overflow-wrap: anywhere;
+}
+
+.rc-table td.rc-score {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 7.6pt;
+}
+
+.rc-table td.rc-score--derived {
+    background: var(--rc-blue-050) !important;
+    font-weight: 700;
+}
+
+.rc-table td.rc-total {
+    font-family: "Consolas", "Courier New", monospace;
+    font-weight: 700;
+    font-size: 8pt;
+    background: var(--rc-green-100) !important;
+}
+
+.rc-table td.rc-grade {
+    font-weight: 700;
+    font-size: 8.4pt;
+    color: var(--rc-green-900);
+}
+
+.rc-table td.rc-remark {
+    text-align: left;
+    padding-left: 1.2mm;
+    font-size: 6.9pt;
+    overflow-wrap: anywhere;
+}
+
+.rc-table td.rc-muted {
+    color: var(--rc-muted);
+    font-size: 7pt;
+}
+
+.rc-table tfoot th,
+.rc-table tfoot td {
+    background: var(--rc-blue-100);
+    font-weight: 700;
+    font-size: 7.2pt;
+    border-top: 1pt solid var(--rc-blue-700);
+}
+
+.rc-table tfoot td {
+    font-family: "Consolas", "Courier New", monospace;
+}
+
+.rc-table__empty {
+    padding: 4mm !important;
+    color: var(--rc-muted);
+    font-style: italic;
+}
+
+/* ==========================================================================
+   7. GRADE ANALYSIS + PERFORMANCE SUMMARY
+   ========================================================================== */
+
+.rc-analysis {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 2.5mm;
+}
+
+.rc-analysis__cell {
+    display: table-cell;
+    width: 50%;
+    vertical-align: top;
+}
+
+.rc-analysis__cell:first-child {
+    padding-right: 1.6mm;
+}
+
+.rc-analysis__cell:last-child {
+    padding-left: 1.6mm;
+}
+
+.rc-mini {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.2pt;
+}
+
+.rc-mini th,
+.rc-mini td {
+    border: 0.5pt solid var(--rc-line);
+    padding: 0.85mm 1.2mm;
+}
+
+.rc-mini thead th {
+    background: var(--rc-blue-700);
+    color: #fff;
+    font-size: 6.4pt;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.rc-mini td.rc-label {
+    text-align: left;
+    color: var(--rc-muted);
+    font-size: 6.9pt;
+}
+
+.rc-mini td.rc-value {
+    text-align: right;
+    font-weight: 700;
+    font-family: "Consolas", "Courier New", monospace;
+    white-space: nowrap;
+}
+
+.rc-mini tbody tr:nth-child(even) td {
+    background: var(--rc-green-050);
+}
+
+.rc-mini tfoot td {
+    background: var(--rc-green-100);
+    font-weight: 700;
+}
+
+.rc-bars {
+    display: block;
+    height: 1.4mm;
+    background: var(--rc-blue-100);
+    border-radius: 1mm;
+    margin-top: 0.5mm;
+    overflow: hidden;
+}
+
+.rc-bars__fill {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--rc-green-500), var(--rc-blue-500));
+}
+
+/* ==========================================================================
+   8. SIDE PANELS
+   ========================================================================== */
+
+.rc-panel {
+    border: 0.5pt solid var(--rc-line);
+    border-radius: 2px;
+    margin-bottom: 2.4mm;
+    overflow: hidden;
+}
+
+.rc-panel__head {
+    background: linear-gradient(90deg, var(--rc-blue-700), var(--rc-blue-500));
+    color: #fff;
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    padding: 1mm 2mm;
+}
+
+.rc-panel__head--green {
+    background: linear-gradient(90deg, var(--rc-green-700), var(--rc-green-500));
+}
+
+.rc-panel__body {
+    padding: 1.4mm 2mm 2mm;
+}
+
+.rc-ratings {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7pt;
+}
+
+.rc-ratings th {
+    border-bottom: 0.5pt solid var(--rc-line);
+    padding: 0.6mm 0.8mm;
+    font-size: 6pt;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    color: var(--rc-blue-700);
+    text-align: left;
+}
+
+.rc-ratings td {
+    border-bottom: 0.5pt dotted var(--rc-line-soft);
+    padding: 0.7mm 0.8mm;
+}
+
+.rc-ratings tr:last-child td {
+    border-bottom: 0;
+}
+
+.rc-ratings td.rc-rate {
+    text-align: right;
+    font-weight: 700;
+    white-space: nowrap;
+    width: 20mm;
+}
+
+.rc-ratings td.rc-rate--none {
+    color: var(--rc-muted);
+    font-weight: 500;
+}
+
+.rc-ratings td.rc-pips {
+    width: 17mm;
+    text-align: right;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    color: var(--rc-green-500);
+}
+
+.rc-pips__off {
+    color: var(--rc-line-soft);
+}
+
+.rc-legend {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7pt;
+}
+
+.rc-legend th,
+.rc-legend td {
+    border-bottom: 0.5pt dotted var(--rc-line-soft);
+    padding: 0.65mm 0.8mm;
+}
+
+.rc-legend tr:last-child th,
+.rc-legend tr:last-child td {
+    border-bottom: 0;
+}
+
+.rc-legend th {
+    width: 9mm;
+    text-align: center;
+    font-weight: 700;
+    color: var(--rc-green-900);
+    background: var(--rc-green-050);
+}
+
+.rc-legend td {
+    color: var(--rc-ink);
+}
+
+.rc-legend td.rc-legend__pct {
+    text-align: right;
+    color: var(--rc-muted);
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 6.4pt;
+    white-space: nowrap;
+}
+
+.rc-kv {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.2pt;
+}
+
+.rc-kv td {
+    padding: 0.7mm 0;
+    vertical-align: top;
+}
+
+.rc-kv td:first-child {
+    color: var(--rc-muted);
+    font-size: 6.6pt;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    width: 15mm;
+    padding-right: 1mm;
+}
+
+.rc-kv td:last-child {
+    font-weight: 600;
+    border-bottom: 0.5pt dotted var(--rc-line);
+    min-height: 4mm;
+}
+
+.rc-verify {
+    text-align: center;
+}
+
+.rc-verify__qr {
+    width: 21mm;
+    height: 21mm;
+    margin: 0 auto;
+    display: block;
+    border: 0.5pt solid var(--rc-line);
+    padding: 0.8mm;
+    background: #fff;
+}
+
+.rc-verify__label {
+    font-size: 6.4pt;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--rc-blue-700);
+    margin: 1.2mm 0 0;
+}
+
+.rc-verify__code {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 7.6pt;
+    font-weight: 700;
+    color: var(--rc-green-700);
+    margin: 0.5mm 0 0;
+    letter-spacing: 0.4px;
+    overflow-wrap: anywhere;
+}
+
+.rc-verify__note {
+    font-size: 6pt;
+    color: var(--rc-muted);
+    margin: 0.8mm 0 0;
+    line-height: 1.35;
+}
+
+/* ==========================================================================
+   9. COMMENTS
+   ========================================================================== */
+
+.rc-comments {
+    margin-top: 3mm;
+}
+
+.rc-comments__grid {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.rc-comments__cell {
+    display: table-cell;
+    width: 33.33%;
+    vertical-align: top;
+    padding: 0 1.5mm;
+}
+
+.rc-comments__cell:first-child {
+    padding-left: 0;
+}
+
+.rc-comments__cell:last-child {
+    padding-right: 0;
+}
+
+.rc-comment {
+    border: 0.5pt solid var(--rc-line);
+    border-top: 1.6mm solid var(--rc-green-500);
+    border-radius: 2px;
+    min-height: 21mm;
+    display: flex;
+    flex-direction: column;
+}
+
+.rc-comment--blue {
+    border-top-color: var(--rc-blue-500);
+}
+
+.rc-comment__role {
+    font-size: 6.6pt;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--rc-green-900);
+    padding: 1.2mm 2mm 0.8mm;
+}
+
+.rc-comment--blue .rc-comment__role {
+    color: var(--rc-blue-700);
+}
+
+.rc-comment__text {
+    flex: 1;
+    padding: 0 2mm;
+    font-size: 7.4pt;
+    line-height: 1.4;
+    color: var(--rc-ink);
+    overflow-wrap: anywhere;
+}
+
+.rc-comment__text--blank {
+    color: transparent;
+}
+
+.rc-comment__sign {
+    font-size: 6.2pt;
+    color: var(--rc-muted);
+    padding: 1.4mm 2mm 1.6mm;
+    border-top: 0.5pt dotted var(--rc-line);
+    margin-top: 1.4mm;
+    text-align: center;
+}
+
+.rc-comment__sign span {
+    display: block;
+    border-bottom: 0.5pt solid var(--rc-line);
+    margin-bottom: 0.6mm;
+}
+
+/* ==========================================================================
+   10. SIGNATURES + FOOTER
+   ========================================================================== */
+
+.rc-signatures {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 4mm;
+}
+
+.rc-signatures__cell {
+    display: table-cell;
+    width: 33.33%;
+    vertical-align: bottom;
+    padding: 0 2mm;
+    text-align: center;
+}
+
+.rc-signatures__line {
+    border-bottom: 0.75pt solid var(--rc-ink);
+    height: 8mm;
+}
+
+.rc-signatures__role {
+    font-size: 6.6pt;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: var(--rc-green-900);
+    margin-top: 1mm;
+}
+
+.rc-signatures__meta {
+    font-size: 6pt;
+    color: var(--rc-muted);
+    margin-top: 0.4mm;
+}
+
+.rc-stamp {
+    display: inline-block;
+    width: 30mm;
+    height: 15mm;
+    border: 1pt dashed var(--rc-line);
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: top;
+    padding-top: 4.6mm;
+    font-size: 6pt;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--rc-muted);
+}
+
+.rc-stamp img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.rc-stamp--filled {
+    border-style: solid;
+    border-color: var(--rc-green-500);
+    padding-top: 0;
+}
+
+.rc-footer {
+    margin-top: 4mm;
+    border-top: 0.75pt solid var(--rc-green-700);
+    padding-top: 1.6mm;
+    text-align: center;
+}
+
+.rc-footer__school {
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--rc-green-900);
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
+.rc-footer__contact {
+    font-size: 6.6pt;
+    color: var(--rc-muted);
+    margin: 0.6mm 0 0;
+}
+
+.rc-footer__meta {
+    font-size: 6.2pt;
+    color: var(--rc-muted);
+    margin: 0.6mm 0 0;
+    letter-spacing: 0.2px;
+}
+
+.rc-footer__meta span {
+    margin: 0 1mm;
+}
+
+/* ==========================================================================
+   11. PRINT RULES - single sheet, no clipping
+   ========================================================================== */
+
+@media print {
+    html,
+    body {
+        background: #fff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .print-body {
+        background: #fff;
+        font-size: 8.4pt;
+    }
+
+    .rc-sheet {
+        max-width: none;
+        width: auto;
+        margin: 0;
+        padding: 0;
+        box-shadow: none !important;
+        border-radius: 0;
+    }
+
+    .rc-masthead,
+    .rc-titlebar,
+    .rc-h2,
+    .rc-panel__head,
+    .rc-table thead th,
+    .rc-mini thead th,
+    .rc-table tfoot th,
+    .rc-table tfoot td,
+    .rc-mini tfoot td,
+    .rc-comment {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .rc-table,
+    .rc-mini,
+    .rc-analysis,
+    .rc-comments__grid,
+    .rc-signatures,
+    .rc-panel {
+        page-break-inside: avoid;
+    }
+
+    .rc-table tr,
+    .rc-mini tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    .rc-body {
+        page-break-inside: avoid;
+    }
+
+    .no-print,
+    .print-toolbar {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   12. SCREEN PREVIEW
+   ========================================================================== */
+
+@media screen {
+    .print-toolbar {
+        position: fixed;
+        top: 14px;
+        right: 24px;
+        z-index: 1000;
+        background: #fff;
+        padding: 10px 14px;
+        border-radius: 8px;
+        box-shadow: 0 3px 14px rgba(0, 0, 0, 0.18);
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        border: 1px solid var(--rc-line-soft);
+    }
+
+    .rc-sheet {
+        box-shadow: 0 6px 26px rgba(0, 0, 0, 0.12);
+        min-height: 271mm;
+    }
+}
+
+/* ==========================================================================
+   13. NARROW SCREENS
+   ========================================================================== */
+
+@media screen and (max-width: 820px) {
+    .rc-body,
+    .rc-analysis,
+    .rc-comments__grid,
+    .rc-signatures,
+    .rc-identity,
+    .rc-masthead {
+        display: block;
+    }
+
+    .rc-main,
+    .rc-side,
+    .rc-analysis__cell,
+    .rc-comments__cell,
+    .rc-signatures__cell,
+    .rc-identity__photo-cell,
+    .rc-masthead__brand {
+        display: block;
+        width: auto;
+        padding: 0;
+        border: 0;
+        margin-bottom: 3mm;
+    }
+
+    .rc-field {
+        display: block;
+        width: auto;
+        border-bottom: 0.5pt solid var(--rc-line-soft);
+        padding-bottom: 1mm;
+    }
+
+    .rc-table-wrap {
+        overflow-x: auto;
+    }
+
+    .rc-table {
+        min-width: 150mm;
+    }
+}

@@ -1,0 +1,1002 @@
+/* ==========================================================================
+   ORPHANS MODEL NURSERY AND PRIMARY SCHOOL (MAKARANTAR MARAYU)
+   School Result Management Portal - shared stylesheet
+   Identity colours: green + gold/yellow on white
+   ========================================================================== */
+
+:root {
+    --green: #0f5132;
+    --green-dark: #0a3d26;
+    --green-light: #e8f3ed;
+    --gold: #d4a017;
+    --gold-light: #fdf6e3;
+    --ink: #1f2d24;
+    --muted: #5b6b60;
+    --line: #e2e8e4;
+    --surface: #ffffff;
+    --canvas: #f4f7f5;
+    --sidebar-w: 268px;
+    --navbar-h: 62px;
+    --radius: 12px;
+    --shadow: 0 6px 18px rgba(15, 81, 50, .07);
+    --shadow-lg: 0 14px 38px rgba(15, 81, 50, .13);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body.app-body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--canvas);
+    color: var(--ink);
+    font-size: .95rem;
+    line-height: 1.55;
+}
+
+.text-green { color: var(--green) !important; }
+.bg-green { background-color: var(--green) !important; }
+.bg-gold { background-color: var(--gold) !important; }
+.bg-teal { background-color: #0d6e6e !important; }
+.bg-plum { background-color: #6b2d5c !important; }
+
+.mono {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: .9em;
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar
+   -------------------------------------------------------------------------- */
+
+.app-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: var(--sidebar-w);
+    background: linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    z-index: 1045;
+    transition: transform .25s ease;
+    overflow-y: auto;
+}
+
+.app-sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    padding: 1rem .95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, .14);
+    min-height: var(--navbar-h);
+}
+
+.app-sidebar__brand img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #fff;
+    flex-shrink: 0;
+}
+
+.app-sidebar__brand-text {
+    font-size: .74rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: .01em;
+}
+
+.app-sidebar__brand-text small {
+    display: block;
+    color: var(--gold);
+    font-size: .68rem;
+    font-weight: 600;
+}
+
+.app-sidebar__nav {
+    flex: 1;
+    padding: .75rem .6rem 1.5rem;
+}
+
+.nav-section {
+    font-size: .68rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: rgba(255, 255, 255, .55);
+    padding: .9rem .6rem .35rem;
+    font-weight: 700;
+}
+
+.side-link {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    padding: .55rem .6rem;
+    border-radius: 9px;
+    color: rgba(255, 255, 255, .88);
+    text-decoration: none;
+    font-size: .875rem;
+    font-weight: 500;
+    margin-bottom: .12rem;
+    transition: background .15s ease, color .15s ease;
+}
+
+.side-link:hover:not([aria-disabled="true"]) {
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+}
+
+.side-link.is-active {
+    background: var(--gold);
+    color: #1c1c1c;
+    font-weight: 600;
+}
+
+.side-link[aria-disabled="true"] {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+.side-link__icon {
+    width: 1.35rem;
+    text-align: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.side-link__badge {
+    margin-left: auto;
+    font-size: .62rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    background: rgba(255, 255, 255, .22);
+    padding: .12rem .4rem;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+.app-sidebar__footer {
+    padding: .8rem .95rem;
+    border-top: 1px solid rgba(255, 255, 255, .14);
+    font-size: .68rem;
+    color: rgba(255, 255, 255, .6);
+}
+
+.sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    z-index: 1040;
+    display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Navbar
+   -------------------------------------------------------------------------- */
+
+.app-navbar {
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-w);
+    right: 0;
+    height: var(--navbar-h);
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    padding: 0 1.1rem;
+    z-index: 1030;
+}
+
+.sidebar-toggle {
+    background: none;
+    border: 0;
+    font-size: 1.4rem;
+    color: var(--green);
+    line-height: 1;
+    padding: .25rem .4rem;
+    display: none;
+}
+
+.app-navbar__title {
+    font-size: .95rem;
+    color: var(--muted);
+    display: flex;
+    gap: .5rem;
+    align-items: baseline;
+}
+
+.app-navbar__title strong { color: var(--green); }
+
+.app-navbar__account {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}
+
+.account-chip { display: flex; align-items: center; gap: .5rem; }
+
+.account-chip__avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+.account-chip__text { display: flex; flex-direction: column; line-height: 1.15; }
+.account-chip__text strong { font-size: .84rem; }
+.account-chip__text small { font-size: .7rem; color: var(--muted); text-transform: capitalize; }
+
+/* --------------------------------------------------------------------------
+   Layout
+   -------------------------------------------------------------------------- */
+
+.app-shell { min-height: 100vh; }
+
+.app-main {
+    margin-left: var(--sidebar-w);
+    padding-top: var(--navbar-h);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-content {
+    flex: 1;
+    padding: 1.4rem 1.5rem 2rem;
+    max-width: 1500px;
+    width: 100%;
+}
+
+.app-footer {
+    padding: 1.3rem 1.5rem;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    font-size: .78rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Page header and cards
+   -------------------------------------------------------------------------- */
+
+.page-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.15rem;
+}
+
+.page-head h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--green);
+    margin: 0 0 .15rem;
+}
+
+.page-head p { margin: 0; color: var(--muted); font-size: .87rem; }
+.page-head__actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+
+.btn-green { background: var(--green); border-color: var(--green); color: #fff; }
+.btn-green:hover, .btn-green:focus { background: var(--green-dark); border-color: var(--green-dark); color: #fff; }
+
+.btn-gold { background: var(--gold); border-color: var(--gold); color: #fff; }
+.btn-gold:hover, .btn-gold:focus { background: #b98d10; border-color: #b98d10; color: #fff; }
+
+.table-card, .form-card, .info-card, .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1.1rem;
+}
+
+.table-card__head, .form-card__head, .info-card__head {
+    padding: .85rem 1.05rem;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    flex-wrap: wrap;
+}
+
+.table-card__title, .form-card__head, .info-card__head {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--green);
+    margin: 0;
+}
+
+.table-card__title small { color: var(--muted); font-weight: 500; font-size: .8rem; }
+.table-card__body, .info-card__body, .form-card__body { padding: 1.05rem; }
+
+/* --------------------------------------------------------------------------
+   Filter bar
+   -------------------------------------------------------------------------- */
+
+.filter-bar {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: .8rem .9rem;
+    margin-bottom: 1.1rem;
+    box-shadow: var(--shadow);
+}
+
+.filter-bar__row { display: flex; gap: .55rem; flex-wrap: wrap; align-items: center; }
+.filter-bar__search { flex: 1 1 240px; max-width: 420px; }
+
+/* --------------------------------------------------------------------------
+   Tables
+   -------------------------------------------------------------------------- */
+
+.table { margin: 0; font-size: .86rem; }
+
+.table thead th {
+    background: var(--green-light);
+    color: var(--green);
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-weight: 700;
+    border-bottom: 2px solid var(--line);
+    white-space: nowrap;
+}
+
+.table tbody td { vertical-align: middle; }
+.table-hover tbody tr:hover { background: #fafcfa; }
+
+.cell-strong { font-weight: 600; color: var(--ink); }
+.table-actions { display: flex; gap: .3rem; align-items: center; }
+
+.list-foot {
+    padding: .8rem 1.05rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: .82rem;
+    color: var(--muted);
+}
+
+.pagination-sm { --bs-pagination-font-size: .8rem; }
+.page-link { color: var(--green); }
+.page-item.active .page-link { background: var(--green); border-color: var(--green); }
+
+/* --------------------------------------------------------------------------
+   Detail meta rows
+   -------------------------------------------------------------------------- */
+
+.meta-row {
+    display: flex;
+    gap: .75rem;
+    padding: .45rem 0;
+    border-bottom: 1px dashed var(--line);
+}
+
+.meta-row:last-child { border-bottom: 0; }
+
+.meta-row__label {
+    flex: 0 0 190px;
+    font-size: .8rem;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.meta-row__value { flex: 1; font-size: .87rem; word-break: break-word; }
+
+.photo-frame {
+    width: 150px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid var(--line);
+    background: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Forms
+   -------------------------------------------------------------------------- */
+
+.form-label { font-weight: 600; font-size: .82rem; color: var(--ink); }
+.form-label.required::after { content: " *"; color: #b02a37; }
+.form-text { font-size: .76rem; }
+
+.form-control, .form-select {
+    border-color: var(--line);
+    border-radius: 8px;
+    font-size: .88rem;
+    padding: .45rem .6rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 .18rem rgba(15, 81, 50, .12);
+}
+
+.form-check-input:checked { background-color: var(--green); border-color: var(--green); }
+
+.password-toggle {
+    position: absolute;
+    right: .35rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background: none;
+    color: var(--muted);
+    padding: .2rem .35rem;
+}
+
+.alert-soft-danger {
+    background: #fdeaea;
+    color: #842029;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: .6rem .75rem;
+    font-size: .84rem;
+}
+
+.alert-soft-info {
+    background: var(--gold-light);
+    color: #7a5c05;
+    border: 1px solid #f0e0b4;
+    border-radius: 8px;
+    padding: .6rem .75rem;
+    font-size: .84rem;
+}
+
+/* --------------------------------------------------------------------------
+   Stats and dashboard tiles
+   -------------------------------------------------------------------------- */
+
+.stat-card {
+    padding: 1rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+}
+
+.stat-card__icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    font-size: 1.3rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.stat-card__value { font-size: 1.5rem; font-weight: 700; color: var(--green); line-height: 1.1; }
+.stat-card__label { font-size: .78rem; color: var(--muted); }
+
+.quick-action {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    padding: .8rem .9rem;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--ink);
+    height: 100%;
+    transition: box-shadow .15s ease, transform .15s ease;
+}
+
+.quick-action:hover { box-shadow: var(--shadow); transform: translateY(-1px); color: var(--green); }
+
+.quick-action__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+}
+
+.quick-action strong { display: block; font-size: .88rem; }
+.quick-action small { color: var(--muted); font-size: .74rem; }
+
+/* --------------------------------------------------------------------------
+   Auth pages
+   -------------------------------------------------------------------------- */
+
+.auth-body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 430px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.auth-card__head {
+    background: var(--gold);
+    color: #fff;
+    text-align: center;
+    padding: 1.4rem 1.2rem;
+}
+
+.auth-card__head img { width: 66px; height: 66px; border-radius: 12px; background: #fff; object-fit: cover; }
+.auth-card__head h1 { font-size: .98rem; font-weight: 700; margin: .7rem 0 .15rem; }
+.auth-card__head p { margin: 0; font-size: .78rem; opacity: .95; }
+.auth-card__body { padding: 1.4rem; }
+
+/* --------------------------------------------------------------------------
+   Sticky table headers
+
+   A result sheet can be far taller than the screen. Pinning the header row keeps
+   the column meanings visible while scrolling, which matters most on a phone
+   where the sheet is read one column at a time.
+   -------------------------------------------------------------------------- */
+
+.table-sticky { margin-bottom: 0; }
+
+.table-sticky thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--surface);
+    box-shadow: inset 0 -1px 0 var(--line);
+    white-space: nowrap;
+}
+
+.table-sticky thead th small { font-weight: 400; }
+
+/* The result sheet scrolls inside its own card on small screens, otherwise a
+   sticky header would fight the sticky page navbar. */
+.result-sheet-wrap { max-height: 65vh; overflow-y: auto; }
+
+.table td .form-control-sm { min-width: 68px; }
+
+.table .remark-row td { padding-top: 0; padding-bottom: .6rem; }
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 991.98px) {
+    .app-sidebar { transform: translateX(-100%); }
+    .app-sidebar.is-open { transform: translateX(0); box-shadow: var(--shadow-lg); }
+    .sidebar-backdrop.is-open { display: block; }
+    .app-main { margin-left: 0; }
+    .app-navbar { left: 0; }
+    .sidebar-toggle { display: block; }
+    .meta-row { flex-direction: column; gap: .1rem; }
+    .meta-row__label { flex: none; }
+}
+
+@media (max-width: 575.98px) {
+    .app-content { padding: 1rem .8rem 1.5rem; }
+    .page-head h1 { font-size: 1.2rem; }
+    .filter-bar__search { max-width: none; }
+    .stat-card { padding: .8rem; }
+    .stat-card__value { font-size: 1.25rem; }
+}
+
+@media print {
+    .app-sidebar, .app-navbar, .app-footer, .filter-bar, .page-head__actions { display: none !important; }
+    .app-main { margin-left: 0; padding-top: 0; }
+    body.app-body { background: #fff; }
+}
+
+/* --------------------------------------------------------------------------
+   Empty states
+   --------------------------------------------------------------------------
+   Used where a screen has nothing to list yet. The icon and the sentence are
+   centred and muted so an empty screen reads as "not started" rather than as a
+   page that failed to load.
+   -------------------------------------------------------------------------- */
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    padding: 2.5rem 1rem;
+    text-align: center;
+}
+
+.empty-state i {
+    font-size: 2.25rem;
+    color: #a9b6ad;
+}
+
+.empty-state p {
+    margin: 0;
+    max-width: 46ch;
+    color: #5b6b60;
+}
+
+/* --------------------------------------------------------------------------
+   Report card print sheet (Phase 5)
+   --------------------------------------------------------------------------
+   The printable card is its own document rather than a page of the app, so it
+   carries no sidebar or navbar. It is sized for A4 portrait and is written to
+   survive a school printer: black text on white, hairline rules, and no colour
+   that a cheap laser printer would turn into a grey smudge.
+   -------------------------------------------------------------------------- */
+
+.print-body {
+    background: #eef1ee;
+    margin: 0;
+    padding: 1.5rem 1rem 3rem;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: #16211a;
+}
+
+/* The toolbar is the only interactive part of the sheet. */
+.print-toolbar {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    max-width: 210mm;
+    margin: 0 auto 1rem;
+    padding: .7rem 1rem;
+    background: #fff;
+    border: 1px solid #d7ddd9;
+    border-radius: 10px;
+}
+
+.report-sheet {
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 12mm 12mm 14mm;
+    background: #fff;
+    box-shadow: 0 6px 26px rgba(0, 0, 0, .09);
+}
+
+/* --- Masthead ------------------------------------------------------------- */
+
+.report-sheet__head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--green);
+}
+
+.report-sheet__logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    flex: none;
+}
+
+.report-sheet__identity { flex: 1 1 auto; min-width: 0; }
+
+.report-sheet__identity h1 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--green-dark);
+    text-transform: uppercase;
+    letter-spacing: .2px;
+}
+
+.report-sheet__campaign {
+    margin: 1px 0 3px;
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--gold);
+}
+
+.report-sheet__meta {
+    margin: 0;
+    font-size: .68rem;
+    line-height: 1.4;
+    color: #4a5a50;
+}
+
+.report-sheet__stamp {
+    flex: none;
+    text-align: right;
+    font-size: .7rem;
+    color: #4a5a50;
+}
+
+.report-sheet__stamp strong {
+    display: block;
+    font-size: .95rem;
+    letter-spacing: 1.4px;
+    color: var(--green);
+}
+
+/* --- Identity grid -------------------------------------------------------- */
+
+.report-sheet__identity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px 10px;
+    margin: 10px 0 14px;
+    padding: 8px 10px;
+    background: var(--green-light);
+    border-radius: 6px;
+    font-size: .74rem;
+}
+
+.report-sheet__identity-grid span {
+    display: block;
+    font-size: .62rem;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #55705f;
+}
+
+.report-sheet__identity-grid strong { font-weight: 600; }
+
+/* --- Section headings ----------------------------------------------------- */
+
+.report-sheet__heading {
+    margin: 14px 0 5px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #b9c4bd;
+    font-size: .8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--green-dark);
+}
+
+/* --- Tables --------------------------------------------------------------- */
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .74rem;
+    margin-bottom: 6px;
+}
+
+.report-table th,
+.report-table td {
+    border: 1px solid #9daba2;
+    padding: 3.5px 6px;
+    vertical-align: middle;
+}
+
+.report-table thead th {
+    background: var(--green-light);
+    font-size: .66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    color: var(--green-dark);
+}
+
+.report-table tfoot th {
+    background: #f4f6f5;
+    font-size: .72rem;
+    color: var(--green-dark);
+}
+
+.report-table .left { text-align: left; }
+.report-table .center { text-align: center; }
+.report-table .right { text-align: right; }
+.report-table .strong { font-weight: 700; }
+.report-table .muted { color: #7c8a81; }
+.report-table .pending { font-size: .64rem; color: #a11; }
+
+.report-table .max {
+    display: block;
+    font-weight: 400;
+    font-size: .6rem;
+    color: #6b7a71;
+}
+
+/* The plain variant is for the two-up summary blocks, which read as a list
+   rather than as data with a header. */
+.report-table--plain th:first-child,
+.report-table--plain td:first-child { width: 55%; }
+
+.report-table--comments .label {
+    width: 26%;
+    font-weight: 600;
+    background: #f7f9f8;
+}
+
+.report-table--comments td { min-height: 34px; vertical-align: top; }
+
+/* --- Two-up blocks -------------------------------------------------------- */
+
+.report-sheet__two-up {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 14px;
+}
+
+.report-sheet__two-up > section { min-width: 0; }
+
+/* --- Signatures ----------------------------------------------------------- */
+
+.report-sheet__signatures {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 26px;
+}
+
+.report-sheet__signatures > div { text-align: center; }
+
+.report-sheet__signatures .rule {
+    display: block;
+    border-top: 1px solid #16211a;
+    margin-bottom: 3px;
+}
+
+.report-sheet__signatures em {
+    font-size: .66rem;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #4a5a50;
+}
+
+.report-sheet__foot {
+    margin-top: 18px;
+    padding-top: 8px;
+    border-top: 1px solid #c6cfc9;
+    font-size: .64rem;
+    line-height: 1.5;
+    color: #5a6a60;
+    text-align: center;
+}
+
+.report-sheet__foot p { margin: 0; }
+
+/* --- Narrow screens ------------------------------------------------------- */
+
+@media (max-width: 575.98px) {
+    .print-body { padding: .5rem .4rem 2rem; }
+    .report-sheet { padding: 10px; }
+    .report-sheet__head { flex-wrap: wrap; }
+    .report-sheet__stamp { text-align: left; }
+    .report-sheet__identity-grid { grid-template-columns: repeat(2, 1fr); }
+    .report-sheet__two-up { grid-template-columns: 1fr; }
+    .report-sheet__signatures { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* --- Printing ------------------------------------------------------------- */
+
+@media print {
+    /* The sheet already has its own page frame, so the screen background and
+       the shadow would otherwise print as a grey block around the card. */
+    body.print-body { background: #fff; padding: 0; }
+
+    .no-print { display: none !important; }
+
+    .report-sheet {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    /* A school prints several cards at a time; keep each on its own page. */
+    .report-sheet { page-break-after: always; }
+    .report-sheet:last-of-type { page-break-after: auto; }
+
+    .report-table { page-break-inside: auto; }
+    .report-table tr { page-break-inside: avoid; }
+
+    @page {
+        size: A4 portrait;
+        margin: 12mm;
+    }
+}
+
+/* ==========================================================================
+   PHASE 6 - Public result checker
+   The verification strip sits between the identity grid and the subject table
+   on both the on-screen result and the printed sheet.
+   ========================================================================== */
+
+.result-verify-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 0 0 12px;
+    padding: 8px 10px;
+    border: 1px solid var(--line, #e2e8e3);
+    border-left: 3px solid var(--green);
+    background: #f7faf8;
+}
+
+.result-verify-strip > div:first-child { display: flex; flex-direction: column; }
+
+.result-verify-strip > div:first-child > span {
+    font-size: .6rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--muted);
+}
+
+.result-verify-strip > div:first-child > strong {
+    font-size: 1rem;
+    letter-spacing: .02em;
+    color: var(--green);
+}
+
+/* The QR area is a deliberate placeholder, not a missing image. No QR library is
+   installed and none is introduced for one box; the icon and the wording keep the
+   space reserved so the finished code drops straight in without reflowing the
+   page. */
+.result-verify-strip__qr {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.result-qr-placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px dashed #9db3a5;
+    border-radius: 6px;
+    color: #7c8a81;
+    font-size: 1.3rem;
+}
+
+.result-verify-strip__qr small {
+    font-size: .58rem;
+    color: var(--muted);
+    line-height: 1.25;
+    text-align: left;
+}
+
+.result-verify-strip__qr em { color: #9db3a5; }
+
+/* The printed sheet has no screen chrome to work with, so the strip loses its
+   tint and its left rule there and sits as a plain bordered box. It is the one
+   part of the sheet that must survive being photocopied in black and white, so
+   it keeps its border and its monospaced code at a size a parent can read off
+   a photocopy. */
+.result-verify-strip--print {
+    background: #fff;
+    border-left: 1px solid var(--line, #e2e8e3);
+    border-left-width: 1px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+.result-verify-strip--print strong { color: #000; }
+
+@media print {
+    .result-verify-strip { padding: 6px 8px; margin-bottom: 8px; }
+    .result-verify-strip__qr small { display: none; }
+    .result-qr-placeholder { width: 34px; height: 34px; font-size: 1rem; }
+}

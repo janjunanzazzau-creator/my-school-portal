@@ -1,0 +1,278 @@
+/* ==========================================================================
+   SYSTEM-WIDE PRINT STYLESHEET
+   Reusable print styles for all list/detail pages in the school portal.
+   ========================================================================== */
+
+@media print {
+    /* Hide all screen-only elements */
+    .no-print,
+    .print-toolbar,
+    .app-sidebar,
+    .app-navbar,
+    .app-footer,
+    .filter-bar,
+    .page-head__actions,
+    .table-actions,
+    .table-card__head form,
+    .sidebar-toggle,
+    .btn,
+    button,
+    .actions,
+    .action-column,
+    [data-print-hide] {
+        display: none !important;
+    }
+
+    /* Reset body for printing */
+    body,
+    html {
+        background: #fff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: 10pt;
+    }
+
+    /* Remove fixed positioning */
+    .app-main {
+        margin-left: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    .app-content {
+        max-width: none !important;
+        padding: 0 !important;
+    }
+
+    /* Page layout for A4 */
+    @page {
+        size: A4 portrait;
+        margin: 15mm;
+    }
+
+    /* Table improvements for print */
+    .table-card {
+        border: none !important;
+        box-shadow: none !important;
+        margin-bottom: 0 !important;
+    }
+
+    .table-card__head {
+        border-bottom: 2px solid #0f5132 !important;
+        margin-bottom: 10px !important;
+    }
+
+    .table-card__title {
+        color: #0f5132 !important;
+        font-size: 12pt !important;
+    }
+
+    .table-responsive {
+        overflow: visible !important;
+    }
+
+    table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+    }
+
+    .table {
+        margin-bottom: 0 !important;
+        font-size: 8pt !important;
+    }
+
+    .table thead th {
+        background: #0f5132 !important;
+        color: #fff !important;
+        font-size: 7.5pt !important;
+        border: 1px solid #0f5132 !important;
+        padding: 4px 6px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .table tbody td {
+        border: 1px solid #9daba2 !important;
+        padding: 3px 6px !important;
+        vertical-align: middle !important;
+    }
+
+    .table tbody tr:nth-child(even) td {
+        background: #f3f9f5 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Avoid page breaks inside tables */
+    .table,
+    .table-card {
+        page-break-inside: auto;
+    }
+
+    .table tr,
+    .table-card__head {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    /* Page head */
+    .page-head {
+        border-bottom: 2px solid #0f5132 !important;
+        margin-bottom: 15px !important;
+        padding-bottom: 10px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .page-head h1 {
+        color: #0f5132 !important;
+        font-size: 14pt !important;
+        margin: 0 !important;
+    }
+
+    .page-head p {
+        color: #5b6b60 !important;
+        font-size: 9pt !important;
+        margin: 2px 0 0 !important;
+    }
+
+    /* Badge styles for print */
+    .badge {
+        border: 1px solid currentColor !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .bg-success {
+        background: #0f5132 !important;
+        color: #fff !important;
+    }
+
+    .bg-secondary {
+        background: #6c757d !important;
+        color: #fff !important;
+    }
+
+    .bg-warning {
+        background: #d4a017 !important;
+        color: #000 !important;
+    }
+
+    .bg-danger {
+        background: #b02a37 !important;
+        color: #fff !important;
+    }
+
+    .bg-info {
+        background: #0d6e6e !important;
+        color: #fff !important;
+    }
+
+    .bg-primary {
+        background: #0f5132 !important;
+        color: #fff !important;
+    }
+
+    .bg-dark {
+        background: #3a3f58 !important;
+        color: #fff !important;
+    }
+
+    .text-dark {
+        color: #000 !important;
+    }
+
+    .text-muted {
+        color: #6c757d !important;
+    }
+
+    .text-success {
+        color: #0f5132 !important;
+    }
+
+    .text-danger {
+        color: #b02a37 !important;
+    }
+
+    .text-green {
+        color: #0f5132 !important;
+    }
+
+    .text-gold {
+        color: #d4a017 !important;
+    }
+
+    /* Monospace for numbers */
+    .mono {
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace !important;
+    }
+
+    /* Card styles for print */
+    .stat-card,
+    .info-card,
+    .form-card {
+        border: 1px solid #e2e8e4 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        margin-bottom: 15px !important;
+    }
+
+    .stat-card__icon {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Empty state */
+    .empty-state {
+        display: none !important;
+    }
+
+    /* Links */
+    a {
+        text-decoration: none !important;
+        color: inherit !important;
+    }
+
+    /* Image handling */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Ensure content doesn't get cut off */
+    .table-card__body {
+        page-break-inside: auto;
+    }
+}
+
+/* Screen styles for print toolbar */
+@media screen {
+    .print-toolbar {
+        display: inline-flex !important;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        background: #fff;
+        border: 1px solid #e2e8e4;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(15, 81, 50, 0.1);
+        font-size: 0.875rem;
+    }
+
+    .print-toolbar .btn {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Page break utilities */
+.page-break-before {
+    page-break-before: always;
+}
+
+.page-break-after {
+    page-break-after: always;
+}
+
+.page-break-avoid {
+    page-break-inside: avoid;
+}
