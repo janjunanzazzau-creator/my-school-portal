@@ -12,6 +12,7 @@ function getDatabaseConfig(): array
 {
     return [
         'host'     => getenv('DB_HOST') ?: 'localhost',
+        'socket'   => getenv('DB_SOCKET') ?: '',
         'port'     => getenv('DB_PORT') ?: '3306',
         'dbname'   => getenv('DB_NAME') ?: 'school_result_portal',
         'username' => getenv('DB_USER') ?: 'root',
@@ -36,7 +37,12 @@ function getDbConnection(): PDO
 
     $config = getDatabaseConfig();
 
-    $dsn = sprintf(
+    $dsn = $config['socket'] !== '' ? sprintf(
+        'mysql:unix_socket=%s;dbname=%s;charset=%s',
+        $config['socket'],
+        $config['dbname'],
+        $config['charset']
+    ) : sprintf(
         'mysql:host=%s;port=%s;dbname=%s;charset=%s',
         $config['host'],
         $config['port'],

@@ -20,3 +20,7 @@
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Local Replit MariaDB files (never commit school records).
+/.local/mariadb/
+/.local/run/

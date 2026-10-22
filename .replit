@@ -1,7 +1,36 @@
-modules = ["php-8.2", "web", "nodejs-20"]
+modules = ["php-8.2", "web", "nodejs-20", "python-base-3.13"]
 
 [nix]
 channel = "stable-25_05"
+packages = ["mariadb"]
 
 [agent]
 expertMode = true
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "School portal"
+
+[[workflows.workflow]]
+name = "School portal"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash scripts/start.sh"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
