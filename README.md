@@ -30,26 +30,24 @@ All of the above ship with XAMPP, so a standard installation is enough.
 
 2. Start **Apache** and **MySQL** from the XAMPP control panel.
 
-3. Create the database and import the schema, in this order:
+3. Create an empty database and import the complete schema:
 
    ```
-   database/school_result_portal.sql
-   database/phase2.sql
-   database/phase3.sql
+   database/setup.sql
    ```
 
-   From a command prompt:
+   In phpMyAdmin, select the new database, open **Import**, and choose
+   `database/setup.sql`. Or create and import it from a command prompt:
 
    ```
-   C:\xampp\mysql\bin\mysql.exe -u root --default-character-set=utf8mb4 ^
-       -e "source C:/xampp/htdocs/school-result-portal/database/school_result_portal.sql"
-   C:\xampp\mysql\bin\mysql.exe -u root --default-character-set=utf8mb4 ^
-       -e "source C:/xampp/htdocs/school-result-portal/database/phase2.sql"
-   C:\xampp\mysql\bin\mysql.exe -u root --default-character-set=utf8mb4 ^
-       -e "source C:/xampp/htdocs/school-result-portal/database/phase3.sql"
+   C:\xampp\mysql\bin\mysql.exe -u root -e "CREATE DATABASE school_result_portal DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
+   C:\xampp\mysql\bin\mysql.exe -u root --default-character-set=utf8mb4 school_result_portal ^
+       < C:\xampp\htdocs\school-result-portal\database\setup.sql
    ```
 
-   Every migration is idempotent, so running one twice is harmless.
+   The combined setup applies phases 1–7 and is safe to re-import. It does not
+   include the optional sample-data files. A fresh database receives the seeded
+   administrator account; change its default password before production use.
 
 4. Open the portal:
 

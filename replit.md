@@ -27,6 +27,9 @@ access, Bootstrap interface, and existing directory layout.
 - Production startup does not run schema migrations or sample data against the
   external database. Make sure it already has the portal schema and intended
   school data before publishing.
+- `database/setup.sql` is the combined MariaDB 10.4+ installer for a selected
+  target database. It includes phases 1–7, excludes sample data, and preserves
+  an existing administrator password and school settings on re-import.
 
 ## Checks
 
