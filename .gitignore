@@ -24,3 +24,6 @@ Thumbs.db
 # Local Replit MariaDB files (never commit school records).
 /.local/mariadb/
 /.local/run/
+
+# Production PHP-FPM and Nginx runtime state.
+/run/

@@ -19,6 +19,14 @@ access, Bootstrap interface, and existing directory layout.
   `DB_PORT`, `DB_NAME`, `DB_USER`, and `DB_PASS` settings instead.
 - `scripts/router.php` prevents the development server from exposing internal
   configuration, SQL dumps, tests, and hidden files.
+- Production is configured as a Replit VM deployment using Nginx and PHP-FPM
+  (`scripts/start-production.sh`), separate from the local MariaDB preview.
+  The production launcher fails closed if DB_HOST, DB_NAME, DB_USER, or DB_PASS
+  is missing; DB_PORT defaults to 3306. Set these in the production environment,
+  with DB_PASS stored as a secret.
+- Production startup does not run schema migrations or sample data against the
+  external database. Make sure it already has the portal schema and intended
+  school data before publishing.
 
 ## Checks
 
@@ -27,10 +35,12 @@ PHP syntax: `find . -path './.local' -prune -o -path './.git' -prune -o -name '*
 The `tests/` directory contains the original workflow tests. Some create sample
 records or assume XAMPP URLs; inspect them before running against real data.
 
-## Before publishing or real school use
+## Before using for real school records
 
-This workflow is for development preview, not a production deployment. Arrange
-a durable MySQL/MariaDB service and upload storage, backups, production PHP
-serving, HTTPS/session configuration, and non-default administrator credentials
-before publishing. Do not assume the local development database will transfer
-to or persist in a published deployment.
+The production server configuration is in place, but publishing still requires
+production database settings and a user-initiated Publish action. The local
+preview database is not copied into production. Configure backups and durable
+storage for student photos, logos, and stamps before relying on uploaded files;
+uploads currently live under the app directory. Replace the seeded administrator
+password and verify the published database and restore process before real
+school use.

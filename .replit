@@ -2,7 +2,7 @@ modules = ["php-8.2", "web", "nodejs-20", "python-base-3.13"]
 
 [nix]
 channel = "stable-25_05"
-packages = ["mariadb"]
+packages = ["mariadb", "nginx"]
 
 [agent]
 expertMode = true
@@ -34,3 +34,19 @@ outputType = "webview"
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[[ports]]
+localPort = 5001
+externalPort = 3000
+
+[deployment]
+deploymentTarget = "vm"
+run = ["bash", "scripts/start-production.sh"]
+
+[userenv]
+
+[userenv.production]
+DB_HOST = "localhost"
+DB_PORT = "3306"
+DB_NAME = "school_result_portal"
+DB_USER = "root"
